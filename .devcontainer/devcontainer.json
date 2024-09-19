@@ -1,0 +1,32 @@
+{
+	"name": "GenAI Sandbox 🏖️",
+
+	"dockerComposeFile": "compose.yml",
+	"service": "devcontainer",
+    "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"ms-python.python",
+				"vallyscode.crayons",
+				"ms-azuretools.vscode-docker"
+			]
+		}
+	},
+    "remoteEnv": {
+		//"OLLAMA_HOST": "http://host.docker.internal:11434"
+		//"OLLAMA_HOST": "http://ollama-service:11434"
+    },
+
+	// "features": {},
+	// "forwardPorts": [],
+
+	// Uncomment the next line if you want start specific services in your Docker Compose config.
+	// "runServices": [],
+
+	// Uncomment the next line if you want to keep your containers running after VS Code shuts down.
+	// "shutdownAction": "none",
+
+	// Run commands after the container is created.
+	"postCreateCommand": "pip3 install -r requirements.txt"
+}

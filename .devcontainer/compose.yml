@@ -1,0 +1,33 @@
+services:
+
+  devcontainer:
+    build:
+      context: .
+      dockerfile: Dockerfile.python
+    volumes:
+      - ../..:/workspaces:cached      
+    network_mode: service:ollama-service
+    command: sleep infinity
+
+  ollama-service:
+    image: ollama/ollama:latest # a best practice is to use fixed tag for the image
+    volumes:
+      - ./ollama:/root/.ollama
+    ports:
+      - 11434:11434
+    # Ollama can run with GPU acceleration inside Docker containers for Nvivia GPUs
+    #deploy:
+    #  resources:
+    #    reservations:
+    #      devices:
+    #        - driver: nvidia
+    #          count: 1
+    #          capabilities: [gpu]
+
+
+  download-llm-data:
+    image: curlimages/curl:8.6.0
+    entrypoint: ["curl", "ollama-service:11434/api/pull", "-d", "{\"name\": \"qwen:0.5b\"}"]
+    depends_on:
+      ollama-service:
+        condition: service_started
