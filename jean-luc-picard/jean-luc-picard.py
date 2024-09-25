@@ -19,6 +19,7 @@ while True:
     else:
         stream = ollama_client.chat(
             model='nemotron-mini',
+            #model='llama3.2:1b',
             messages=[
               {'role': 'system', 'content': instructions},
               {'role': 'system', 'content': description},

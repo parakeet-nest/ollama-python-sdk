@@ -49,3 +49,10 @@ services:
     depends_on:
       ollama-service:
         condition: service_started
+
+  download-llama-3-2-data:
+    image: curlimages/curl:8.6.0
+    entrypoint: ["curl", "host.docker.internal:11434/api/pull", "-d", "{\"name\": \"llama3.2:1b\"}"]
+    depends_on:
+      ollama-service:
+        condition: service_started
