@@ -26,6 +26,7 @@ while True:
             ],
             options={"temperature":0.0},
             stream=True,
+            keep_alive=1,
         )
 
         for chunk in stream:

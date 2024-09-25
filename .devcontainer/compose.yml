@@ -7,6 +7,9 @@ services:
     volumes:
       - ../..:/workspaces:cached      
     network_mode: service:ollama-service
+    environment:
+      - OLLAMA_KEEP_ALIVE=-1
+      - OLLAMA_DEFAULT_KEEP_ALIVE=-1
     command: sleep infinity
 
   ollama-service:
@@ -25,9 +28,24 @@ services:
     #          capabilities: [gpu]
 
 
-  download-llm-data:
+  download-qwen-data:
     image: curlimages/curl:8.6.0
     entrypoint: ["curl", "ollama-service:11434/api/pull", "-d", "{\"name\": \"qwen:0.5b\"}"]
+    depends_on:
+      ollama-service:
+        condition: service_started
+
+  download-nemotron-mini-data:
+    image: curlimages/curl:8.6.0
+    entrypoint: ["curl", "ollama-service:11434/api/pull", "-d", "{\"name\": \"nemotron-mini\"}"]
+    depends_on:
+      ollama-service:
+        condition: service_started
+
+
+  download-nemotron-mini-local-data:
+    image: curlimages/curl:8.6.0
+    entrypoint: ["curl", "host.docker.internal:11434/api/pull", "-d", "{\"name\": \"nemotron-mini\"}"]
     depends_on:
       ollama-service:
         condition: service_started
