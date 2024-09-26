@@ -39,7 +39,6 @@ def fact_check(model: str, document: str, claim: str):
     print(json_result["message"]["content"]+ "\n")
     #return result
 
-
 claim = "the text is about kubernetes or kube or k8s"
 model = "bespoke-minicheck:latest"
 

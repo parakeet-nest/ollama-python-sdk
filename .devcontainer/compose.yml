@@ -56,3 +56,10 @@ services:
     depends_on:
       ollama-service:
         condition: service_started
+
+  download-qwen-2-5-data:
+    image: curlimages/curl:8.6.0
+    entrypoint: ["curl", "host.docker.internal:11434/api/pull", "-d", "{\"name\": \"qwen2.5-coder:1.5b\"}"]
+    depends_on:
+      ollama-service:
+        condition: service_started

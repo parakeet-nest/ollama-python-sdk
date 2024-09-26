@@ -37,9 +37,9 @@ html_page = '''
 </html>
 '''
 
-html_to_markdown("reader-lm:1.5b", html_page)
+#html_to_markdown("reader-lm:1.5b", html_page)
 
-#html_to_markdown("reader-lm:0.5b", html_page)
+html_to_markdown("reader-lm:0.5b", html_page)
 
 
 print("\n")
