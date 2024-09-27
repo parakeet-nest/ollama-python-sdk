@@ -129,7 +129,6 @@ def generate_description(character: Character, ollama_url: str, model: str) -> s
             "top_p":0.5,
         },
         stream=True,
-        keep_alive=1,
     )
 
     answer = ""
@@ -141,7 +140,7 @@ def generate_description(character: Character, ollama_url: str, model: str) -> s
 
     # save content of answer to a markdown file: description.md
     # Open the file in write mode
-    with open("description.md", "w") as file:
+    with open('./description-'+model+'.md', "w") as file:
         # Write the content to the file
         file.write(answer)
     
@@ -177,12 +176,14 @@ def chat_with_character(character: Character, description: str,ollama_url: str, 
             
             print("\n")
 
+#model="llama3.2:1b"
 
-dwarf = generate_character("dwarf", "http://host.docker.internal:11434", "nemotron-mini")
+model="nemotron-mini"
+character = generate_character("dwarf", "http://host.docker.internal:11434", model)
 
-generate_description(dwarf, "http://host.docker.internal:11434", "nemotron-mini")
+generate_description(character, "http://host.docker.internal:11434", model)
 
-with open('./description.md', 'r') as file:
+with open('./description-'+model+'.md', 'r') as file:
     description = file.read()
 
-chat_with_character(dwarf, description, "http://host.docker.internal:11434", "nemotron-mini")
+chat_with_character(character, description, "http://host.docker.internal:11434", model)

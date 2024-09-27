@@ -2,7 +2,6 @@ import os
 import ollama 
 from ollama import Client 
 
-
 ollama_client = Client(host='http://host.docker.internal:11434')
 #ollama_client = Client(host='http://ollama-service:11434')
 
@@ -19,15 +18,14 @@ while True:
     else:
         stream = ollama_client.chat(
             model='nemotron-mini',
-            #model='llama3.2:1b',
             messages=[
               {'role': 'system', 'content': instructions},
               {'role': 'system', 'content': description},
               {'role': 'user', 'content': user_input},
             ],
-            options={"temperature":0.0},
+            options={"temperature":0.8},
             stream=True,
-            keep_alive=1,
+            keep_alive=-1,
         )
 
         for chunk in stream:

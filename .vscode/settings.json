@@ -2,7 +2,7 @@
     "workbench.iconTheme": "material-icon-theme",
     "workbench.colorTheme": "Cobalt2",
     "editor.fontSize": 16,
-    "terminal.integrated.fontSize": 16,
+    "terminal.integrated.fontSize": 22,
     "editor.insertSpaces": true,
     "editor.tabSize": 4,
     "editor.detectIndentation": true,
@@ -23,7 +23,7 @@
             "other": "off"
         }
     },
-    "markdown.preview.fontSize": 18,
+    "markdown.preview.fontSize": 22,
     "[dockerfile]": {
         "editor.fontSize": 16,
     },
@@ -31,7 +31,7 @@
         "editor.fontSize": 16,
     },
     "[python]": {
-        "editor.fontSize": 16,
+        "editor.fontSize": 22,
 
     },
     "[json]": {
