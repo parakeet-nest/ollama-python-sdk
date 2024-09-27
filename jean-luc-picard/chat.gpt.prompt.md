@@ -1,0 +1,1 @@
+generate a complete and detailed CHARACTER SHEET about jean-luc picard from star trek, with his characteristics, quality, default, story, provenance, his friends, enemies, catch phrase and be structured
